@@ -19,28 +19,28 @@ kotlin {
         publishLibraryVariantsGroupedByFlavor = true
     }
 
-    ios {
-        binaries {
-            framework {
-                baseName = "sk-model"
-            }
-        }
-    }
-
-
-//    val iOSTarget: (String, org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget.() -> Unit) -> org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget =
-//            if (System.getenv("SDK_NAME")?.startsWith("iphoneos") == true)
-//                ::iosArm64
-//            else
-//                ::iosX64
-//
-//    iOSTarget("ios") {
+//    ios {
 //        binaries {
 //            framework {
 //                baseName = "sk-model"
 //            }
 //        }
 //    }
+
+
+    val iOSTarget: (String, org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget.() -> Unit) -> org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget =
+            if (System.getenv("SDK_NAME")?.startsWith("iphoneos") == true)
+                ::iosArm64
+            else
+                ::iosX64
+
+    iOSTarget("ios") {
+        binaries {
+            framework {
+                baseName = "sk-model"
+            }
+        }
+    }
 
     sourceSets {
         val commonMain by getting {
