@@ -47,6 +47,7 @@ kotlin {
             dependencies {
                 api(project(":core"))
                 implementation(project(":contract"))
+                api("com.squareup.sqldelight:runtime:${Versions.sqldelight}")
                 api("org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.serialization}")
                 api("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.serialization}")
             }
@@ -55,13 +56,13 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 api("com.jakewharton.timber:timber:${Versions.Android.timber}")
-                implementation("com.squareup.sqldelight:android-driver:${Versions.sqldelight}")
+                api("com.squareup.sqldelight:android-driver:${Versions.sqldelight}")
             }
         }
 
         val iosMain by getting {
             dependencies {
-                implementation("com.squareup.sqldelight:native-driver:${Versions.sqldelight}")
+                api("com.squareup.sqldelight:native-driver:${Versions.sqldelight}")
             }
         }
 
@@ -119,4 +120,5 @@ sqldelight {
     this.database("PersistDb") {
         packageName = "tech.skot.model.persist"
     }
+    linkSqlite = false
 }
