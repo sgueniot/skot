@@ -19,28 +19,28 @@ kotlin {
         publishLibraryVariantsGroupedByFlavor = true
     }
 
-//    ios {
-//        binaries {
-//            framework {
-//                baseName = "sk-model"
-//            }
-//        }
-//    }
-
-
-    val iOSTarget: (String, org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget.() -> Unit) -> org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget =
-            if (System.getenv("SDK_NAME")?.startsWith("iphoneos") == true)
-                ::iosArm64
-            else
-                ::iosX64
-
-    iOSTarget("ios") {
+    ios {
         binaries {
             framework {
                 baseName = "sk-model"
             }
         }
     }
+
+
+//    val iOSTarget: (String, org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget.() -> Unit) -> org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget =
+//            if (System.getenv("SDK_NAME")?.startsWith("iphoneos") == true)
+//                ::iosArm64
+//            else
+//                ::iosX64
+//
+//    iOSTarget("ios") {
+//        binaries {
+//            framework {
+//                baseName = "sk-model"
+//            }
+//        }
+//    }
 
     sourceSets {
         val commonMain by getting {
@@ -50,6 +50,10 @@ kotlin {
                 api("com.squareup.sqldelight:runtime:${Versions.sqldelight}")
                 api("org.jetbrains.kotlinx:kotlinx-serialization-core:${Versions.serialization}")
                 api("org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.serialization}")
+                api("io.ktor:ktor-client-core:${Versions.ktor}")
+                api("io.ktor:ktor-client-serialization:${Versions.ktor}")
+                api("io.ktor:ktor-client-json:${Versions.ktor}")
+                api("io.ktor:ktor-client-logging:${Versions.ktor}")
             }
         }
 
@@ -57,12 +61,19 @@ kotlin {
             dependencies {
                 api("com.jakewharton.timber:timber:${Versions.Android.timber}")
                 api("com.squareup.sqldelight:android-driver:${Versions.sqldelight}")
+
+                api("io.ktor:ktor-client-android:${Versions.ktor}")
+//                api("io.ktor:ktor-client-json-jvm:${Versions.ktor}")
+//                api("io.ktor:ktor-client-serialization-jvm:${Versions.ktor}")
+//                api("io.ktor:ktor-client-logging-jvm:${Versions.ktor}")
             }
         }
 
         val iosMain by getting {
             dependencies {
                 api("com.squareup.sqldelight:native-driver:${Versions.sqldelight}")
+
+                api("io.ktor:ktor-client-ios:${Versions.ktor}")
             }
         }
 
