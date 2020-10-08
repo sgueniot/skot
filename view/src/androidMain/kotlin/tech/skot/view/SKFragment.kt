@@ -48,6 +48,7 @@ abstract class SKFragment : Fragment() {
     }
 }
 
+
 abstract class SKBottomSheetDialogFragment: BottomSheetDialogFragment() {
 
     private var screenViewImpl:ScreenViewImpl<*,*,*>? = null

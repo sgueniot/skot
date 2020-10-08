@@ -14,10 +14,12 @@ version = Versions.version
 
 kotlin {
 
-    android("android") {
+    android {
         publishLibraryVariants("release", "debug")
         publishLibraryVariantsGroupedByFlavor = true
     }
+
+//    android()
 
     ios {
         binaries {
