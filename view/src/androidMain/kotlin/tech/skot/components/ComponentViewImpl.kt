@@ -18,9 +18,21 @@ abstract class ComponentViewImpl<A : AppCompatActivity, F : Fragment, B : Any> :
     override fun onRemove() {
     }
 
-    lateinit var activity: A
+    private var _activity:A? = null
+    var activity: A
+        get() = _activity!!
+        set(value) {
+            _activity = value
+        }
+
     var fragment: F? = null
-    lateinit var binding: B
+
+    private var _binding:B? = null
+    var binding: B
+        get() = _binding!!
+        set(value) {
+            _binding = value
+        }
 
     //doit appeler les initWith des sous-composants
     open fun initWith(activity: A, fragment: F?, binding:B) {
@@ -47,6 +59,11 @@ abstract class ComponentViewImpl<A : AppCompatActivity, F : Fragment, B : Any> :
         linkTo(parentComponent.lifeCycleOwner)
     }
 
+    fun cleanViewReferences() {
+        _activity = null
+        fragment = null
+        _binding = null
+    }
 
     protected open fun treatAction(action: Action) {
     }
